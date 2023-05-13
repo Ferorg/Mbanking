@@ -78,6 +78,7 @@ public class AutorizationMenu {
 public static List<Users> registrationClient(List<Users> users,Users user){
     //проверка логина
 
+
     boolean flag=false;
         for (Users u:users) {
             if(u.getLogin().equals(user.getLogin())){

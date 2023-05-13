@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Deserializable {
 
+
     public static List<Users> deserialize() {
         String file = "D:/javalessons/Mbanking/Ibanking/src/pvt/banking/data/UsersList.txt";
         List<Users> usersList =new ArrayList<>();

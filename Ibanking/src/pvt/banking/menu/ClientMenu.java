@@ -11,6 +11,7 @@ public class ClientMenu {
 static boolean inMenu=true;
 static Scanner in = new Scanner(System.in);
 
+
     public static void menuClient (){
         do{
             Massage.clientMenuMessage();
