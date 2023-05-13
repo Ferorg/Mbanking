@@ -4,6 +4,7 @@ import pvt.banking.massage.Massage;
 
 import java.util.Scanner;
 
+
 public class AdminMenu {
     static boolean inMenu=true;
     static Scanner in = new Scanner(System.in);

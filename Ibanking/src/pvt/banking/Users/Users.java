@@ -72,13 +72,8 @@ public class Users implements Serializable {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return login.equals(users.login);
-    }
+
+
 
 
 

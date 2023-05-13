@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 public class serializable {
 
+
     public static void serializable(List<Users> usersList){
         String file = "D:/javalessons/Mbanking/Ibanking/src/pvt/banking/data/UsersList.txt";
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))){
