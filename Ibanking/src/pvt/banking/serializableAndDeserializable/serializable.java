@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.util.List;
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
-public class serializable {
-
-
+public class Serializable {
 
     public static void serializable(List<Users> usersList){
         String file = "D:/javalessons/Mbanking/Ibanking/src/pvt/banking/data/UsersList.txt";
@@ -21,7 +19,5 @@ public class serializable {
         }
 
     }
-
-//
 
 }

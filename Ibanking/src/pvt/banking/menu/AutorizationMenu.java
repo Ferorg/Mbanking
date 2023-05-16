@@ -11,7 +11,8 @@ import static pvt.banking.massage.Massage.exitMessage;
 import static pvt.banking.menu.AdminMenu.menuAdmin;
 import static pvt.banking.menu.ClientMenu.menuClient;
 import static pvt.banking.serializableAndDeserializable.Deserializable.deserialize;
-import static pvt.banking.serializableAndDeserializable.serializable.serializable;
+import static pvt.banking.serializableAndDeserializable.Serializable.serializable;
+
 
 public class AutorizationMenu {
     static boolean inMenu=true;
@@ -48,11 +49,11 @@ public class AutorizationMenu {
         int parol = inNumber.nextInt();
         System.out.println("Введите имя");
         String name = inText.nextLine();
-        Users user=new Users(0,login,parol,name,Role.Client);
+        Users user=new Users(0,login,parol,name,Role.CLIENT);
         registrationClient(users,user);
         serializable(users);
     }
-    public static void autorizationClient(List<Users> users){
+    public static   void autorizationClient(List<Users> users){
         System.out.println("Введите логин");
         String login = inText.nextLine();
         System.out.println("Введите пароль");
@@ -60,14 +61,20 @@ public class AutorizationMenu {
         clientAvailabilityCheck(users,login,parol);
     }
     public static void clientAvailabilityCheck(List<Users>  users,String login,int parol){
+        int i=0;
         for (Users u:users) {
             if((login.equals(u.getLogin()))&&(parol==u.getPassword())){
                 checkRoleAndChoiseMenu(u);
+            }else{
+                i++;
             }
+        }
+        if(i>0){
+            System.out.println("неверный логин или пароль");
         }
     }
     public static void checkRoleAndChoiseMenu(Users users){
-        if(users.getRole().equals(Role.Admin)){
+        if(users.getRole().equals(Role.ADMIN)){
             System.out.println(users.getName()+" Добро пожаловать ");
             menuAdmin ();
         }else{
@@ -77,8 +84,6 @@ public class AutorizationMenu {
     }
 public static List<Users> registrationClient(List<Users> users,Users user){
     //проверка логина
-
-
     boolean flag=false;
         for (Users u:users) {
             if(u.getLogin().equals(user.getLogin())){
@@ -98,7 +103,6 @@ public static List<Users> registrationClient(List<Users> users,Users user){
         e.printStackTrace();
     }
 
-    //задание айди пользователю
     for(int i=0;i< users.size();i++){
         users.get(i).setId(i);
     }
