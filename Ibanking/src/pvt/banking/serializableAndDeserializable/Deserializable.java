@@ -15,7 +15,6 @@ public class Deserializable {
         List<Users> usersList =new ArrayList<>();
         try (ObjectInputStream objectInputputStream = new ObjectInputStream(new FileInputStream(file))) {
             usersList = ( List<Users>) objectInputputStream.readObject();
-            System.out.print(usersList.toString());
         } catch (Throwable e) {
             e.printStackTrace();
         }

@@ -2,8 +2,8 @@ package pvt.banking.Users;
 
 public enum Role {
 
-    ADMIN("Админ"),
-    CLIENT("Пользователь");
+    Admin("Админ"),
+    Client("Пользователь");
     private String role;
 
     Role(String role) {

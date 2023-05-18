@@ -1,5 +1,6 @@
 package pvt.banking.menu;
 
+import pvt.banking.BankAccount.Account;
 import pvt.banking.Users.Role;
 import pvt.banking.Users.Users;
 import pvt.banking.massage.Massage;
@@ -19,14 +20,14 @@ public class AutorizationMenu {
     static Scanner in = new Scanner(System.in);
     static Scanner inNumber=new Scanner(System.in);
     static Scanner inText=new Scanner(System.in);
-    public static void menu1(List<Users> usersList){
+    public static void menu1(List<Users> usersList,List<Account> ac){
         do {
             Massage.autorizationMenuMessage();
             int choise = in.nextInt();
     switch (choise){
         case 1:
             System.out.println("Авторизация.");
-            autorizationClient(usersList);
+            autorizationClient(usersList,ac);
           //  inMenu=false;
             break;
         case 2:
@@ -49,22 +50,24 @@ public class AutorizationMenu {
         int parol = inNumber.nextInt();
         System.out.println("Введите имя");
         String name = inText.nextLine();
-        Users user=new Users(0,login,parol,name,Role.CLIENT);
+        Users user=new Users(0,login,parol,name,Role.Client);
         registrationClient(users,user);
         serializable(users);
     }
-    public static   void autorizationClient(List<Users> users){
+    public static   void autorizationClient(List<Users> users,List<Account> ac){
         System.out.println("Введите логин");
         String login = inText.nextLine();
         System.out.println("Введите пароль");
         int parol = inNumber.nextInt();
-        clientAvailabilityCheck(users,login,parol);
+        clientAvailabilityCheck(users,login,parol,ac);
+
     }
-    public static void clientAvailabilityCheck(List<Users>  users,String login,int parol){
+    public static void clientAvailabilityCheck(List<Users>  users,String login,int parol,List<Account> ac){
         int i=0;
         for (Users u:users) {
             if((login.equals(u.getLogin()))&&(parol==u.getPassword())){
-                checkRoleAndChoiseMenu(u);
+                checkRoleAndChoiseMenu(u,ac);
+
             }else{
                 i++;
             }
@@ -73,26 +76,20 @@ public class AutorizationMenu {
             System.out.println("неверный логин или пароль");
         }
     }
-    public static void checkRoleAndChoiseMenu(Users users){
-        if(users.getRole().equals(Role.ADMIN)){
+    public static void checkRoleAndChoiseMenu(Users users, List<Account> ac){
+        if(users.getRole().equals(Role.Admin)){
             System.out.println(users.getName()+" Добро пожаловать ");
-            menuAdmin ();
+            menuAdmin (users);
         }else{
             System.out.println(users.getName()+" Добро пожаловать ");
-            menuClient();
+            menuClient(users,ac);
         }
     }
-public static List<Users> registrationClient(List<Users> users,Users user){
+public static List<Users> registrationClient(List<Users> users, Users user){
     //проверка логина
-    boolean flag=false;
-        for (Users u:users) {
-            if(u.getLogin().equals(user.getLogin())){
-                flag=true;
-                break;
-            }else{
-               flag=false;
-            }
-        }
+
+    String login=user.getLogin();
+    boolean flag = checkLogin( users,login);
     try {
         if(!flag) {
             users.add(user);
@@ -107,5 +104,17 @@ public static List<Users> registrationClient(List<Users> users,Users user){
         users.get(i).setId(i);
     }
     return users;
+}
+public static boolean checkLogin(List<Users> users, String login){
+    boolean flag=false;
+    for (Users u:users) {
+        if(u.getLogin().equals(login)){
+            flag=true;
+            break;
+        }else{
+            flag=false;
+        }
+    }
+    return flag;
 }
 }

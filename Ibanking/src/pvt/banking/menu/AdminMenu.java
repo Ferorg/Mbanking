@@ -1,16 +1,20 @@
 package pvt.banking.menu;
 
+import pvt.banking.Users.Users;
 import pvt.banking.massage.Massage;
 
 import java.util.Scanner;
 
+import static pvt.banking.Users.Users.changeLogin;
+import static pvt.banking.Users.Users.changePaswword;
 
 
 public class AdminMenu {
     static boolean inMenu=true;
     static Scanner in = new Scanner(System.in);
-    public static void menuAdmin (){
+    public static void menuAdmin (Users users){
         do{
+            System.out.println(users.toString());
             Massage.adminMenuMessage();
             int choise = in.nextInt();
             switch (choise) {
@@ -46,8 +50,10 @@ public class AdminMenu {
                 case 14:
                     break;
                 case 15:
+                    changePaswword(users);
                     break;
                 case 16:
+                    changeLogin(users);
                     break;
                 case 17:
 
