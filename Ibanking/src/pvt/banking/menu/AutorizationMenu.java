@@ -51,7 +51,7 @@ public class AutorizationMenu {
         System.out.println("Введите имя");
         String name = inText.nextLine();
         Users user=new Users(0,login,parol,name,Role.Client);
-        registrationClient(users,user);
+        registrationClient1(users,user);
         serializable(users);
     }
     public static   void autorizationClient(List<Users> users,List<Account> ac){
@@ -82,10 +82,10 @@ public class AutorizationMenu {
             menuAdmin (users);
         }else{
             System.out.println(users.getName()+" Добро пожаловать ");
-            menuClient(users,ac);
+            menuClient(users);
         }
     }
-public static List<Users> registrationClient(List<Users> users, Users user){
+public static List<Users> registrationClient1(List<Users> users, Users user){
     //проверка логина
 
     String login=user.getLogin();
@@ -99,10 +99,8 @@ public static List<Users> registrationClient(List<Users> users, Users user){
     }catch (Throwable e) {
         e.printStackTrace();
     }
+    idRecalculating(users);
 
-    for(int i=0;i< users.size();i++){
-        users.get(i).setId(i);
-    }
     return users;
 }
 public static boolean checkLogin(List<Users> users, String login){
@@ -116,5 +114,12 @@ public static boolean checkLogin(List<Users> users, String login){
         }
     }
     return flag;
+}
+public static List<Users> idRecalculating(List<Users> users){
+    for(int i=0;i< users.size();i++){
+        users.get(i).setId(i);
+    }
+    return users;
+
 }
 }

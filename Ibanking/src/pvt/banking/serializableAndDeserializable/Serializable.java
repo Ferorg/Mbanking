@@ -12,9 +12,11 @@ public class Serializable {
         String file = "D:/javalessons/Mbanking/Ibanking/src/pvt/banking/data/UsersList.txt";
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))){
             objectOutputStream.writeObject(usersList);
+            objectOutputStream.close();
         } catch (Throwable e) {
             e.printStackTrace();
         }
+
 
     }
 
